@@ -3,6 +3,11 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import "./App.scss";
 
+import BackgroundXXS from "./assets/background-xxs.png";
+import BackgroundM from "./assets/background-m.png";
+import BackgroundL from "./assets/background-l.png";
+import BackgroundXL from "./assets/background-xl.png";
+
 gsap.registerPlugin(useGSAP);
 
 const Letter = (props) => (
@@ -27,7 +32,6 @@ const quoteText = "Team Taiwan! Team Taiwan! Taiwan is a great country!"
     </React.Fragment>
   ));
 
-console.log("quoteText", quoteText);
 function App() {
   useGSAP(() => {
     gsap.from("[data-quote-text-letter]", {
@@ -40,7 +44,7 @@ function App() {
       opacity: 0,
 
       ease: "back.out",
-      duration: 0.8,
+      duration: 0.7,
       stagger: 0.015,
     });
   });
@@ -51,26 +55,21 @@ function App() {
 
       <picture className="background">
         <source
-          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-xxs.png"
+          data-srcset={BackgroundXXS}
           media="(max-width: 30em)"
-          srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-xxs.png"
+          srcSet={BackgroundXXS}
         />
         <source
-          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-m.png"
+          data-srcset={BackgroundM}
           media="(max-width: 48em)"
-          srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-m.png"
+          srcSet={BackgroundM}
         />
         <source
-          data-srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-l.png"
+          data-srcset={BackgroundL}
           media="(max-width: 64em)"
-          srcset="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-l.png"
+          srcSet={BackgroundL}
         />
-        <img
-          data-src="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-xl.png"
-          alt=""
-          src="https://dogstudio.co/app/themes/portfolio-2018/static/assets/images/cases/background-xl.png"
-          data-was-processed="true"
-        />
+        <img data-src={BackgroundXL} alt="background" src={BackgroundXL} />
       </picture>
     </main>
   );
