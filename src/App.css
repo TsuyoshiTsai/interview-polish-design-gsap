@@ -1,4 +1,31 @@
-.cases-background {
+.main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  height: 100vh;
+}
+
+.quote-text {
+  padding-inline: 2rem;
+  /* font-family: GT Sectra Display, Times, Georgia, serif; */
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.87);
+  line-height: 1;
+}
+
+@media screen and (min-width: 48em) {
+  .quote-text {
+    padding-inline: 3rem;
+    max-width: 56rem;
+    font-size: 4rem;
+  }
+}
+
+.background {
   position: absolute;
   top: 0;
   left: 0;
