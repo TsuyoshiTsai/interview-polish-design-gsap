@@ -1,0 +1,56 @@
+.main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  place-items: center;
+  place-content: center;
+  height: 100vh;
+}
+
+.quote-text {
+  padding-inline: 2rem;
+  /* font-family: GT Sectra Display, Times, Georgia, serif; */
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.87);
+  line-height: 1;
+  perspective: 1000px;
+
+  & > *:first-child {
+    position: absolute;
+    left: 1rem;
+  }
+  & > *:last-child {
+    margin-left: 0.25rem;
+  }
+
+  &__word {
+    display: inline-flex;
+  }
+
+  &__letter {
+    display: inline-flex;
+    transform-origin: 0 100%;
+    transform-style: preserve-3d;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .quote-text {
+    padding-inline: 3rem;
+    max-width: 56rem;
+    font-size: 4rem;
+
+    & > *:last-child {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
