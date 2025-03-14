@@ -33,25 +33,88 @@ const quoteText = "Team Taiwan! Team Taiwan! Taiwan is a great country!"
   ));
 
 function App() {
-  useGSAP(() => {
-    gsap.from("[data-quote-text-letter]", {
-      x: 80,
-      y: 50,
-      z: -300,
-      scaleY: 0.1,
-      // NOTE: use transform property to specify rotation order
-      transform: "rotateX(-90deg) rotate(-35deg)",
-      opacity: 0,
+  const quoteTextRef = React.useRef(null);
 
-      ease: "back.out",
-      duration: 0.7,
-      stagger: 0.015,
-    });
-  });
+  useGSAP(
+    (context, contextSafe) => {
+      gsap.from("[data-quote-text-letter]", {
+        x: 80,
+        y: 50,
+        z: -300,
+        scaleY: 0.1,
+        // NOTE: use transform property to specify rotation order
+        transform: "rotateX(-90deg) rotate(-35deg)",
+        opacity: 0,
+
+        ease: "back.out",
+        duration: 1.1,
+        stagger: 0.015,
+      });
+
+      const letters = gsap.utils.toArray("span", quoteTextRef.current);
+      const handleMouseMove = contextSafe((event) => {
+        letters.forEach((letter) => {
+          const rect = letter.getBoundingClientRect();
+          const letterCenterX = rect.left + rect.width / 2;
+          const letterCenterY = rect.top + rect.height / 2;
+
+          const dx = letterCenterX - event.clientX;
+          const dy = letterCenterY - event.clientY;
+
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 75;
+
+          const minDistance = 5;
+          const normalizedDistance = Math.max(minDistance, distance);
+
+          const power = Math.max(0, (maxDistance - normalizedDistance) / maxDistance);
+
+          const angle = Math.atan2(dy, dx);
+          const xOffset = Math.cos(angle) * power * 30;
+          const yOffset = Math.sin(angle) * power * 30;
+
+          const rotate = power * 10 * (dx > 0 ? 1 : -1);
+
+          gsap.to(letter, {
+            x: xOffset,
+            y: yOffset,
+            scale: 1 + power * 0.15,
+            rotation: rotate,
+            duration: 0.5,
+            ease: "power1.out",
+          });
+        });
+      });
+      const handleMouseLeave = contextSafe(() => {
+        gsap.to(letters, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: 0.5,
+          ease: "elastic.out(1, 0.5)",
+        });
+      });
+
+      quoteTextRef.current?.addEventListener("mousemove", handleMouseMove);
+      quoteTextRef.current?.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        quoteTextRef.current?.removeEventListener("mousemove", handleMouseMove);
+        quoteTextRef.current?.removeEventListener(
+          "mouseleave",
+          handleMouseLeave
+        );
+      };
+    },
+    { container: quoteTextRef }
+  );
 
   return (
     <main className="main">
-      <div className="quote-text">{quoteText}</div>
+      <div ref={quoteTextRef} className="quote-text">
+        {quoteText}
+      </div>
 
       <picture className="background">
         <source
