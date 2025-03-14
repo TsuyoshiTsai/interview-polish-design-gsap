@@ -47,7 +47,7 @@ The animation follows these key principles:
 - Duration Calculation:
   Dog Studio animation runs 1.255s for 91 characters (including spaces).
   Our text contains 52 characters.
-  Adjusted duration: `52 / 91 \* 1.255 ≈ 0.7s`.
+  Adjusted duration: `52 / 91 \* 1.255 ≈ 0.717s`.
 
 ### Why Not Use GSAP’s SplitText Plugin?
 

@@ -44,7 +44,7 @@ function App() {
       opacity: 0,
 
       ease: "back.out",
-      duration: 0.7,
+      duration: 0.717,
       stagger: 0.015,
     });
   });
