@@ -4,6 +4,8 @@ This project implements a text loading animation inspired by [Dog Studio's "Our 
 
 ## 🎥 Demo
 
+![demo.gif](src/assets/demo.gif)
+
 🔗 [Live Preview](https://tsuyoshitsai.github.io/recruit/polish-design/)
 
 ## 🔍 How It Works
@@ -64,7 +66,7 @@ The duration is set to `1.1s` based on the following calculation:
 
 GSAP provides a `SplitText` plugin that automatically breaks text into characters, simplifying animation. However, it's part of the Club GSAP membership, so this project manually splits text into `<span>` elements instead.
 
-## **✨ Interactive Waving Effect on Hover ✨**  
+## **✨ Interactive Waving Effect on Hover ✨**
 
 An interactive "waving" effect is implemented when the mouse hovers over the text. Here's how it works:
 
