@@ -47,7 +47,7 @@ function App() {
         opacity: 0,
 
         ease: "back.out",
-        duration: 0.717,
+        duration: 1.1,
         stagger: 0.015,
       });
 
