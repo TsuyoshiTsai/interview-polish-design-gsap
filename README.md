@@ -26,8 +26,8 @@ This project implements a text loading animation inspired by [Dog Studio's "Our 
 1. Clone this repository:
 
 ```bash
-git clone <repo-url>
-cd project-folder
+git clone https://github.com/TsuyoshiTsai/interview-polish-design-gsap.git
+cd interview-polish-design-gsap
 ```
 
 2. Install dependencies:
